@@ -3,7 +3,7 @@
 class TransactionManager
 {
     private $isTransactionStarted = false;
-    static private $instance;
+    private static $instance;
 
     public function start()
     {
@@ -32,10 +32,10 @@ class TransactionManager
 
     static public function getInstance()
     {
-        if (empty(static::$instance)) {
-            static::$instance = new static();
+        if (!self::$instance) {
+            self::$instance = new TransactionManager();
         }
 
-        return static::$instance;
+        return self::$instance;
     }
 }
